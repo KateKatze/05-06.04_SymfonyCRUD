@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Details{% endblock %}
+
+{% block body %}
+<h2 class="page-header mt-5 mb-5"> Animal details </h2>
+   <ul class="list-group">
+   <li>{{animal.name}}</li>
+   <li>{{animal.breed}}</li>
+   <li>{{animal.description}}</li>
+   <li>{{animal.age}}</li>
+   </ul>
+   <br>
+   <a class="btn btn-info" href="/">Back</a>
+{% endblock %}

@@ -52,7 +52,7 @@ class AnimalsController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'edit_animals')]
-    public function editAnimals($id, Request $request, ManagerRegistry $doctrine): Response
+    public function editAnimals($id, Request $request, ManagerRegistry $doctrine, FileUploader $fileUploader): Response
     {
         $animals = $doctrine->getManager()->getRepository(Animals::class)->find($id);
         // dd($animals);
@@ -60,9 +60,14 @@ class AnimalsController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             // $now = new DateTime("now");
-            $animals = $form->getData();
+            $pictureFile = $form->get('picture')->getData();
+            if($pictureFile){
+                $pictureFileName = $fileUploader->upload($pictureFile);
+                $animals->setPicture($pictureFileName);
+            }
             // $animals->setCreateDate($now);
             // dd($animals);
+            $animals = $form->getData();
             $em = $doctrine->getManager();
             $em->persist($animals);
             // $users = $doctrine->getRepository(Users::class)->find(1);

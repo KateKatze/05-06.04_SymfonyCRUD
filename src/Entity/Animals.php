@@ -25,6 +25,9 @@ class Animals
     #[ORM\Column(type: 'integer')]
     private $age;
 
+    #[ORM\ManyToOne(targetEntity: Users::class)]
+    public $fk_user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class Animals
     public function setAge(int $age): self
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    public function getFkUser(): ?Users
+    {
+        return $this->fk_user;
+    }
+
+    public function setFkUser(?Users $fk_user): self
+    {
+        $this->fk_user = $fk_user;
 
         return $this;
     }

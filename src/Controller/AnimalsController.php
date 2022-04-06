@@ -58,6 +58,9 @@ class AnimalsController extends AbstractController
             // dd($animals);
             $em = $doctrine->getManager();
             $em->persist($animals);
+            // $users = $doctrine->getRepository(Users::class)->find(1);
+            // $animals->setFkUser($users);
+            // $animals->setFkUser(1); -> will be error
             $em->flush();
 
             $this->addFlash("notice", "Animal info has been updated");

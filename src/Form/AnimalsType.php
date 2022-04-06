@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Form;
+use App\Entity\Animals;
+use App\Entity\Users;
 
 // use App\Entity\Animals;
 
@@ -13,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 // use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class AnimalsType extends AbstractType
@@ -24,10 +27,15 @@ class AnimalsType extends AbstractType
        ->add('breed', TextType::class, ['attr'=>["class"=>"form-control mb-2"]])
        ->add('description', TextType::class, ['attr'=>["class"=>"form-control mb-2"]])
        ->add('age', NumberType::class, ['attr'=>["class"=>"form-control mb-2"]])
+       ->add('fk_user', EntityType::class, [
+           'class'=> Users::class,
+           'choice_label' => 'name',
+           'attr' => ['class' => 'ms-5 mt-4 mb-3']
+        ])
        ->add('save', SubmitType::class, [
            'label' => 'Save',
            'attr' => ['class' => 'btn btn-primary mt-4 mb-5']
-       ]);
+        ]);
   }
 
   public function configureOptions(OptionsResolver $resolver): void

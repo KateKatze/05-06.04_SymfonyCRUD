@@ -6,11 +6,11 @@
 <div class="container">
 <h2 class="page-header mt-5 mb-5"> Animal details </h2>
    <ul class="list-group list-unstyled">
+   <li><img class="rounded mb-3" style="height: 200px; width: auto;" src="{{asset('pictures/' ~ animal.picture)}}"></li>
    <li>Name: {{animal.name}}</li>
    <li>Breed: {{animal.breed}}</li>
    <li>Description: {{animal.description}}</li>
    <li>Age: {{animal.age}} years</li>
-   <li><img src="{{asset('pictures/' ~ animal.picture)}}"></li>
    <li>Owner: {{animal.fk_user.name}}</li>
    </ul>
    <br>

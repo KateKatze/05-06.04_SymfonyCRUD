@@ -28,6 +28,9 @@ class Animals
     #[ORM\ManyToOne(targetEntity: Users::class)]
     public $fk_user;
 
+    #[ORM\Column(type: 'string', length: 500)]
+    private $picture;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Animals
     public function setFkUser(?Users $fk_user): self
     {
         $this->fk_user = $fk_user;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

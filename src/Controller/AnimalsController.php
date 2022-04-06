@@ -3,6 +3,7 @@ namespace App\Controller;
 use App\Entity\Animals;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use App\Service\FileUploader;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,17 +22,23 @@ class AnimalsController extends AbstractController
     }
 
     #[Route('/create', name: 'create_animals')]
-    public function createAnimals(Request $request, ManagerRegistry $doctrine): Response
+    public function createAnimals(Request $request, ManagerRegistry $doctrine, FileUploader $fileUploader): Response
     {
         $animals = new Animals();
         // dd($animals);
         $form = $this->createForm(AnimalsType::class, $animals);
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()){
             // $now = new DateTime("now");
-            $animals = $form->getData();
+            $pictureFile = $form->get('picture')->getData();
+            if($pictureFile){
+                $pictureFileName = $fileUploader->upload($pictureFile);
+                $animals->setPicture($pictureFileName);
+            }
             // $animals->setCreateDate($now);
             // dd($animals);
+            $animals = $form->getData();
             $em = $doctrine->getManager();
             $em->persist($animals);
             $em->flush();

@@ -10,6 +10,7 @@
    <li>Breed: {{animal.breed}}</li>
    <li>Description: {{animal.description}}</li>
    <li>Age: {{animal.age}} years</li>
+   <li><img src="{{asset('pictures/' ~ animal.picture)}}"></li>
    <li>Owner: {{animal.fk_user.name}}</li>
    </ul>
    <br>

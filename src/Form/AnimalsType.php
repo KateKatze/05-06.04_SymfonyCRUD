@@ -29,7 +29,7 @@ class AnimalsType extends AbstractType
        ->add('breed', TextType::class, ['attr'=>["class"=>"form-control mb-2", "placeholder"=>"Type animal breed"]])
        ->add('description', TextType::class, ['attr'=>["class"=>"form-control mb-2", "placeholder"=>"Type animal description"]])
        ->add('picture', FileType::class, [
-            'attr'=>["class"=>"form-control mb-2"],
+                'attr'=>["class"=>"form-control mb-2"],
                 'label' => 'Upload Picture',
         //unmapped means that is not associated to any entity property
                 'mapped' => false,

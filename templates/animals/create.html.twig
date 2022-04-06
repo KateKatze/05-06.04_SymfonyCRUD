@@ -3,5 +3,10 @@
 {% block title %}Create{% endblock %}
 
 {% block body %}
-Create
+<div class="container">
+<h2 class="page-header mt-5 mb-5">Create animal info</h2>
+   {{form_start(form)}}
+   {{form_widget(form)}} 
+   {{form_end(form)}}
+</div>
 {% endblock %}

@@ -1,18 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AnimalsController!{% endblock %}
+{% block title %}Animals{% endblock %}
 
 {% block body %}
+<div class="container">
 <h2 class="page-header mt-5 mb-5"> Animals </h2>
    <table class="table table-striped">
        <thead>
            <tr>
-               <th>id</th>
-               <th>name</th>
-               <th>breed</th>
-               <th>description</th>
-               <th>age</th>
-               <th>actions</th>
+               <th>ID</th>
+               <th>Name</th>
+               <th>Breed</th>
+               <th>Description</th>
+               <th>Age</th>
+               <th>Actions</th>
            </tr>
        </thead>
        {% for animal in animals %}
@@ -24,11 +25,12 @@
                     <td> {{animal.description}} </td>
                     <td> {{animal.age}} </td>
                     <td> <a href="/details/{{animal.id}}" class="btn btn-success">View</a>     
-                        <a href="/edit/{{animal.id}}" class="btn btn-default">Edit</a>
+                        <a href="/edit/{{animal.id}}" class="btn btn-warning">Edit</a>
                         <a href="/delete/{{animal.id}}" class="btn btn-danger">Delete</a>       
                     </td>
                 </tr>
             </tbody> 
        {% endfor %}
    </table>
+</div>
 {% endblock %}

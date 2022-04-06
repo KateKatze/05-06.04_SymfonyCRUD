@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create{% endblock %}
+{% block title %}Update{% endblock %}
 
 {% block body %}
-Edit
+<div class="container">
+<h2 class="page-header mt-5 mb-5">Update animal info</h2>
+   {{form_start(form)}}
+   {{form_widget(form)}} 
+   {{form_end(form)}}
+</div>
 {% endblock %}
